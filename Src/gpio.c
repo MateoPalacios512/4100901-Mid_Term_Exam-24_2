@@ -52,6 +52,10 @@ void configure_gpio_for_usart(void)
 
 void configure_gpio(void)
 {
+<<<<<<< HEAD
+    *RCC_AHB2ENR |= (1 << 0) | (1 << 2); // Enable clock for GPIOA and GPIOC
+
+=======
    *RCC_AHB2ENR |= (1 << 0) | (1 << 2); // Enable clock for GPIOA and GPIOC
 
     // Configure PA5 as output
@@ -61,6 +65,7 @@ void configure_gpio(void)
     // Configure PC13 as input
     GPIOC->MODER &= ~(3U << (BUTTON_PIN * 2)); // Clear mode bits for PC13
 
+>>>>>>> b7d0d5e7b1c1bf0b15b9eb64d2afcdcab0e3338e
     // Enable clock for SYSCFG
     *RCC_APB2ENR |= (1 << 0); // RCC_APB2ENR_SYSCFGEN
 
@@ -75,6 +80,12 @@ void configure_gpio(void)
     // Unmask EXTI13
     EXTI->IMR1 |= (1 << BUTTON_PIN);
 
+<<<<<<< HEAD
+    init_gpio_pin(GPIOA, LED_PIN, 0x1); // Set LED pin as output
+    init_gpio_pin(GPIOC, BUTTON_PIN, 0x0); // Set BUTTON pin as input
+
+=======
+>>>>>>> b7d0d5e7b1c1bf0b15b9eb64d2afcdcab0e3338e
     // Enable EXTI15_10 interrupt
     *NVIC_ISER1 |= (1 << (EXTI15_10_IRQn - 32));
     

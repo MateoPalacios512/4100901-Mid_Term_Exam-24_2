@@ -19,6 +19,10 @@ void run_state_machine(void) {
     switch (current_state) {
         case LOCKED:
             // No periodic action in locked state
+            if (systick_GetTick() - unlock_timer >= TEMP_UNLOCK_DURATION) {
+                gpio_set_door_led_state(0); // Turn off door state LED
+                current_state = LOCKED;
+            }
             break;
         case TEMP_UNLOCK:
             if (systick_GetTick() - unlock_timer >= TEMP_UNLOCK_DURATION) {
@@ -28,6 +32,10 @@ void run_state_machine(void) {
             break;
         case PERM_UNLOCK:
             // No periodic action in permanent unlock state
+            if (systick_GetTick() - unlock_timer <= TEMP_UNLOCK_DURATION) {
+                gpio_set_door_led_state(1); // Turn off door state LED
+                current_state = PERM_UNLOCK;
+                }
             break;
     }
 }

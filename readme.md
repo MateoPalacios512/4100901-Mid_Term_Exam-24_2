@@ -46,3 +46,8 @@ Este README describe un sistema de control de acceso simplificado implementado e
      - Se reciba un comando `C` (CLOSE) por UART.
      - Una pulsación sencilla del botón de abrir/cerrar indique volver a bloquear.
 
+**solucion**
+Lo que faltaba agregarle al codigo eran tres partes, el main en la parte de los leds en los estados de bloqueado y desbloqueado que esta ubicada en la maquina de estados 
+Lo segundo que faltaba era la parte del gpio donde se tenia que configurar tanto el boton y el led y los pines correspondientes a cada uno de ellos 
+La ultima parte se tenia que ompletar era de del uart donde se ttiene que configurar todo el UART2 y se activar las interrupciones correspondientespara hacer funcionar el codigo
+
